@@ -1,9 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import Card from "../Card/Card";
 
+const initialState = {
+  user: null,
+  searchQuery: "Bret"
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.payload
+      };
+    case "SET_SEARCH_QUERY":
+      return {
+        ...state,
+        searchQuery: action.payload
+      };
+    default:
+      return state;
+  }
+};
+
+const setUser = user => ({
+  type: "SET_USER",
+  payload: user
+});
+
+const setSearchQuery = queryString => ({
+  type: "SET_SEARCH_QUERY",
+  payload: queryString
+});
+
 const UseEffect = () => {
-  const [user, setUser] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { user, searchQuery } = state;
 
   useEffect(() => {
     if (searchQuery.length > 0) {
@@ -12,7 +44,7 @@ const UseEffect = () => {
           `https://jsonplaceholder.typicode.com/users?username=${searchQuery}`
         );
         const data = await response.json();
-        setUser(data[0]);
+        dispatch(setUser(data[0]));
       };
       fetchFunc();
     }
@@ -23,7 +55,7 @@ const UseEffect = () => {
       <input
         type="text"
         value={searchQuery}
-        onChange={event => setSearchQuery(event.target.value)}
+        onChange={event => dispatch(setSearchQuery(event.target.value))}
       />
       {user ? (
         <div>
