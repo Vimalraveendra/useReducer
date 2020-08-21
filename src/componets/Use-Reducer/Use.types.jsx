@@ -1,0 +1,6 @@
+const USE_TYPES = {
+  SET_USER: "SET_USER",
+  SET_SEARCH_QUERY: "SET_SEARCH_QUERY",
+};
+
+export default USE_TYPES;
