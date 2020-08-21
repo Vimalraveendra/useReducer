@@ -1,5 +1,5 @@
 import React from "react";
-import UseEffect from "./componets/Use-Reducer/useReducer";
+import UseEffect from "./componets/Use-Reducer/useEffect";
 
 import "./App.css";
 
