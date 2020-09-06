@@ -28,12 +28,12 @@ import { setUser, setSearchQuery } from "./Use.actions";
 // };
 
 // const setUser = (user) => ({
-//   type: USE_TYPES.SET_USER,
+//   type: 'SET_USER',
 //   payload: user,
 // });
 
 // const setSearchQuery = (queryString) => ({
-//   type: USE_TYPES.SET_USER,
+//   type: 'SET_SEARCH_QUERY',
 //   payload: queryString,
 // });
 
